@@ -13,6 +13,13 @@ import axios from 'axios';
 // 设置基准地址
 axios.defaults.baseURL ='http://127.0.0.1:8888/api/private/v1/';
 
+// 设置请求拦截器
+axios.interceptors.request.use(config=>{
+  // 请求拦截器中的函数会在每次请求之前执行
+  console.log(config)
+  config.headers.Authorization=sessionStorage.getItem('token')
+  return config
+})
 // 将axios添加到vue原型中
 Vue.prototype.$http = axios;
 
