@@ -36,7 +36,12 @@
         <el-table-column label="操作" width="180px">
           <template slot-scope="scope">
             <!-- 修改 -->
-            <el-button type="primary" icon="el-icon-edit" size="mini" @click="modifyUser(scope.row.id)"></el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              @click="modifyUser(scope.row.id)"
+            ></el-button>
             <!-- 删除 -->
             <el-button
               type="danger"
@@ -59,7 +64,7 @@
           <el-input v-model="addForm.username"></el-input>
         </el-form-item>
         <el-form-item label="用户密码:" prop="password">
-          <el-input v-model="addForm.password"></el-input>
+          <el-input v-model="addForm.password" type="password"></el-input>
         </el-form-item>
         <el-form-item label="邮箱:" prop="email">
           <el-input v-model="addForm.email"></el-input>
@@ -75,10 +80,15 @@
     </el-dialog>
 
     <!-- 修改用户信息模块 -->
-    <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
+    <el-dialog
+      title="修改用户信息"
+      :visible.sync="editDialogVisible"
+      width="50%"
+      @close="editDialogClosed"
+    >
       <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-        <el-form-item label="用户名称:" prop="username">
-          <el-input v-model="editForm.username"></el-input>
+        <el-form-item label="用户名称:" prop="username" >
+          <el-input v-model="editForm.username" disabled></el-input>
         </el-form-item>
         <el-form-item label="邮箱:" prop="email">
           <el-input v-model="editForm.email"></el-input>
@@ -86,7 +96,7 @@
         <el-form-item label="手机:" prop="mobile">
           <el-input v-model="editForm.mobile"></el-input>
         </el-form-item>
-        </el-form>
+      </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="enterModifyUser">确 定</el-button>
@@ -111,7 +121,7 @@ import { log } from 'util'
 export default {
   data() {
     //验证邮箱的规则
-    var checkEmail = (rule, value, cb) => {
+      var checkEmail = (rule, value, cb) => {
       const regEmail = /^\w+@\w+(\.\w+)+$/
       if (regEmail.test(value)) {
         return cb()
@@ -150,12 +160,12 @@ export default {
         mobile: ''
       },
       // 修改用户的表单数据
-      editForm:{
+      editForm: {
         username: '',
         email: '',
         mobile: ''
       },
-      editFormRules:{
+      editFormRules: {
         username: [
           { required: true, message: '请输入登录名称', trigger: 'blur' },
           {
@@ -182,9 +192,7 @@ export default {
           }
         ]
       },
-      editFormRef:{
-
-      },
+      editFormRef: {},
       // 表单内容验证规则
       addFormRules: {
         username: [
@@ -223,7 +231,7 @@ export default {
         ]
       },
       // 是否显示修改用户弹窗
-      editDialogVisible:false,
+      editDialogVisible: false
     }
   },
   created() {
@@ -282,7 +290,7 @@ export default {
       // 对话框关闭之后,重置表达
       this.$refs.addFormRef.resetFields()
     },
-    editDialogClosed(){
+    editDialogClosed() {
       this.$refs.editFormRef.resetFields()
     },
     // 添加用户
@@ -292,7 +300,6 @@ export default {
         if (valid === false)
           //  验证失败
           return this.$message.error('验证失败')
-
         //  验证成功,去做登录
         //  发请求
         const { data: res } = await this.$http.post('users', this.addForm)
@@ -305,27 +312,30 @@ export default {
       })
     },
     // 编辑用户的对话框
-    async modifyUser(id){
-    //  发送请求根据id获取用户信息
-    const{data:res}=await this.$http.get('users/'+id)
-    // 如果添加失败,就做提示
-    if(res.meta.status!==200)
-      return this.$message.error('获取用户信息失败')
-      // 将获取到的数据保存到数据editForm   
-      this.editForm=res.data
+    async modifyUser(id) {
+      //  发送请求根据id获取用户信息
+      const { data: res } = await this.$http.get('users/' + id)
+      // 如果添加失败,就做提示
+      if (res.meta.status !== 200)
+        return this.$message.error('获取用户信息失败')
+      // 将获取到的数据保存到数据editForm
+      this.editForm = res.data
       // 显示弹出窗
-      this.editDialogVisible=true
+      this.editDialogVisible = true
     },
     // 修改用户信息
-    enterModifyUser(){
+    enterModifyUser() {
       // 当用户点击修改确定信息按钮进行表单验证
-      this.$refs.editFormRef.validate(async valid=>{
-        if(!valid) return this.$message.error('验证失败')
+      this.$refs.editFormRef.validate(async valid => {
+        if (!valid) return this.$message.error('验证失败')
         // 验证成功,开始发送请求
-        const {data:res}=await this.$http.put('users/'+this.editForm.id,this.editForm)
-        if(res.meta.status!==200) return this.$message.error('修改失败')
+        const { data: res } = await this.$http.put(
+          'users/' + this.editForm.id,
+          this.editForm
+        )
+        if (res.meta.status !== 200) return this.$message.error('修改失败')
         this.$message.success('修改信息成功')
-        this.editDialogVisible=false
+        this.editDialogVisible = false
         this.getUserList()
       })
     }
