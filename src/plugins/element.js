@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import { Button,Form, FormItem,Input,Message,Container,Header,Aside,
 Main,Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,Card,BreadcrumbItem,Table,
-TableColumn,Switch,Tooltip,Pagination,MessageBox,Dialog} from 'element-ui'
+TableColumn,Switch,Tooltip,Pagination,MessageBox,Dialog,Tag,Row,Col,Tree,Select,Option} from 'element-ui'
 
 
 
@@ -29,6 +29,13 @@ Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
+Vue.use(Tag)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
+
 
 
 // Message因为不是一个标签组件,不要使用use的方式进行注册
