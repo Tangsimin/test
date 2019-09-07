@@ -92,11 +92,7 @@
       @close="editDialogClosed"
     >
       <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-<<<<<<< HEAD
-        <el-form-item label="用户名称:" prop="username" >
-=======
         <el-form-item label="用户名称:" prop="username">
->>>>>>> user
           <el-input v-model="editForm.username" disabled></el-input>
         </el-form-item>
         <el-form-item label="邮箱:" prop="email">
@@ -268,9 +264,7 @@ export default {
         ]
       },
       // 是否显示修改用户弹窗
-<<<<<<< HEAD
-      editDialogVisible: false
-=======
+
       editDialogVisible: false,
       // 分配角色对话框
       setRolesDialogVisible: false,
@@ -280,7 +274,6 @@ export default {
       rolesList: [],
       // 保存用户选中的角色id
       selectedRoleId: ''
->>>>>>> user
     }
   },
   created() {
@@ -341,10 +334,7 @@ export default {
       this.$refs.addFormRef.resetFields()
     },
     editDialogClosed() {
-<<<<<<< HEAD
-=======
       // 关闭修改用户信息对话框重置内容
->>>>>>> user
       this.$refs.editFormRef.resetFields()
     },
     // 关闭分配用户角色信息之后的内容重置
@@ -389,17 +379,14 @@ export default {
           'users/' + this.editForm.id,
           this.editForm
         )
-<<<<<<< HEAD
         if (res.meta.status !== 200) return this.$message.error('修改失败')
         this.$message.success('修改信息成功')
         this.editDialogVisible = false
-=======
         console.log(res)
         if (res.meta.status !== 200) return this.$message.error('修改失败')
         // 用户信息修改成功
         this.$message.success('修改信息成功')
-        // 刷新列表信息
->>>>>>> user
+        // 刷新列表信
         this.getUserList()
         // 关闭对话框
         this.editDialogVisible = false
