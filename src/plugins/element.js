@@ -3,7 +3,8 @@ import Vue from 'vue'
 import { Button,Form, FormItem,Input,Message,Container,Header,Aside,
 Main,Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,Card,BreadcrumbItem,Table,
 TableColumn,Switch,Tooltip,Pagination,MessageBox,Dialog,Tag,Row,Col,
-Tree,Select,Option,Cascader,Alert,Tabs,tabPane} from 'element-ui'
+Tree,Select,Option,Cascader,Alert,Tabs,tabPane,Step,Steps,CheckboxGroup,
+Checkbox,Upload} from 'element-ui'
 
 
 
@@ -40,7 +41,11 @@ Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(tabPane)
-
+Vue.use(Step)
+Vue.use(Steps)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Upload)
 
 
 // Message因为不是一个标签组件,不要使用use的方式进行注册

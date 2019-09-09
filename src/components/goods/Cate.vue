@@ -43,7 +43,7 @@
         <!-- 操作 -->
         <template slot="opt" slot-scope="scope">
           <el-button size="mini" type="primary" icon="el-icon-edit">编辑</el-button>
-          <el-button size="mini" type="danger" icon="el-icon-delete">删除</el-button>
+          <el-button size="mini" type="danger" icon="el-icon-delete" @click='deleteCate(scope.row.cat_id)'>删除</el-button>
         </template>
       </tree-table>
       <!-- 分页 -->
@@ -91,6 +91,7 @@
         <el-button type="primary" @click="addCate">确 定</el-button>
       </span>
     </el-dialog>
+    
   </div>
 </template>
 <script>
@@ -229,7 +230,20 @@ export default {
       this.addCateForm.cat_level = 0
       this.addCateForm.cat_pid = 0
     },
-    
+    // 删除商品分类
+    async deleteCate(id){
+      this.$confirm('是否确定删除该商品分类项')
+      .then(async result=>{
+        console.log('点击了确定')
+        console.log('删除的商品分类id:'+id)
+        console.log(id)
+        const{data:res}=await this.$http.delete(`categories/${id}`)
+        console.log(res)
+      })
+      .catch(res=>{
+        console.log('点击了取消')
+      })
+    }
   }
 }
 </script> 
