@@ -5,11 +5,14 @@ Main,Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,Card,BreadcrumbItem,Table,
 TableColumn,Switch,Tooltip,Pagination,MessageBox,Dialog,Tag,Row,Col,
 Tree,Select,Option,Cascader,Alert,Tabs,tabPane,Step,Steps,CheckboxGroup,
 Checkbox,Upload} from 'element-ui'
-
+import Timeline from './timeline'
+import TimelineItem from './timeline-item'
 
 
 
 // 注册为全局可用组件
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
